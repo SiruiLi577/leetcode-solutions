@@ -1,0 +1,36 @@
+name: Update Progress
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-progress:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Count solutions
+        id: count
+        run: |
+          COUNT=$(find array string dp -type f \( -name "*.py" -o -name "*.js" -o -name "*.cpp" \) | wc -l)
+          echo "count=$COUNT" >> $GITHUB_OUTPUT
+
+      - name: Update README
+        run: |
+          TOTAL=200
+          COUNT=${{ steps.count.outputs.count }}
+          PERCENT=$((COUNT * 100 / TOTAL))
+          # 用 sed 更新徽章数字
+          sed -i "s/题目总数-[0-9]\+\/$TOTAL/题目总数-$COUNT\/$TOTAL/" README.md
+          sed -i "s|progress-bar.dev/[0-9]\+/?scale=$TOTAL|progress-bar.dev/$COUNT/?scale=$TOTAL|" README.md
+          sed -i "s/最近更新-[0-9]\{4\}--[0-9]\{2\}--[0-9]\{2\}/最近更新-$(date +%Y--%m--%d)/" README.md
+
+      - name: Commit changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git commit -am "chore: update progress to ${{ steps.count.outputs.count }} solutions" || echo "No changes"
+          git push
