@@ -1,8 +1,8 @@
 # leetcode-solutions
 # 📝 LeetCode Solutions
 
-[![刷题进度](https://img.shields.io/badge/题目总数-0/200-4CAF50?style=flat-square)](#)
-![Progress](https://progress-bar.dev/0/?scale=200&title=完成题数&width=500&color=4CAF50)
+[![刷题进度](https://img.shields.io/badge/题目总数-1/200-4CAF50?style=flat-square)](#)
+![Progress](https://progress-bar.dev/1/?scale=200&title=完成题数&width=500&color=4CAF50)
 [![最近更新](https://img.shields.io/badge/最近更新-2025--08--13-blue?style=flat-square)](#)
 [![语言](https://img.shields.io/badge/语言-Python%20%7C%20JavaScript-orange?style=flat-square)](#)
 [![License](https://img.shields.io/badge/License-MIT-lightgrey?style=flat-square)](#)
